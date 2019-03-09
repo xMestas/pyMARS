@@ -185,6 +185,9 @@ def run_drgep(solution_object, conditions_file, error_limit, target_species, ret
 		print("Conditions file not found")
 		exit()
 
+	# Add target, oxidizer, and fuel to retained species
+	helper.addRetained(conditions_array, target_species, retained_species)
+
 	sim_array = helper.setup_simulations(conditions_array,solution_object) # Turn conditions array into unran simulation objects for the original solution
 	ignition_delay_detailed = helper.simulate(sim_array) # Run simulations and process results
 

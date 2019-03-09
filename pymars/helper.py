@@ -45,3 +45,37 @@ def simulate(sim_array):
 
         ignition_delay = np.array(tau) #Turn tau array into a numpy array
         return ignition_delay
+
+
+############
+# Add oxidizers, fuels, and targets to retianed species.
+#
+# conditions array: array of initial conditions read in from the ic file
+# target_species: array of target species names
+# retained_species: array of species to retain
+#############
+def addRetained(conditions_array, target_species, retained_species):
+
+    # Add the target species to the retained species if not already in
+    for sp in target_species:
+        if sp not in retained_species:
+            retained_species.append(sp)
+
+    # For each initial condition set
+    for condition in conditions_array:
+        # Extract species names from condition formatting
+        # Replace , with :, split by :, and take every other element
+        oxid_names = condition.oxid.replace(",",":").split(":")[::2]
+        fuel_names = condition.fuel.replace(",",":").split(":")[::2]
+
+        # Add the oxidzers to the retained species if not already in
+        for sp in oxid_names:
+            if sp not in retained_species:
+                retained_species.append(sp)
+
+        # Add the fuels to the retained species if not already in
+        for sp in fuel_names:
+            if sp not in retained_species:
+                retained_species.append(sp)
+    return retained_species
+

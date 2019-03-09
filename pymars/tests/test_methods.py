@@ -27,7 +27,7 @@ def testDRGEPSA():
 	conditions =  relative_location("example_files/example_input_file.txt")
 	error = 5.0
 	target_species = ["CH4","O2"]
-	retained_species = ["CH4","O2","N2","H2O","CO2"]
+	retained_species = ["H2O","CO2"]
 	final_error = [0]
 	epsilon_star = .5
 
@@ -64,7 +64,7 @@ def testPFA():
 	conditions =  relative_location("example_files/example_input_file.txt")
 	error = 5.0
 	target_species = ["CH4","O2"]
-	retained_species = ["CH4","O2","N2","H2O","CO2"]
+	retained_species = ["H2O","CO2"]
 	final_error = [0]
 	epsilon_star = .5
 
@@ -89,7 +89,7 @@ def testDRG():
 	conditions =  relative_location("example_files/example_input_file.txt")
 	error = 5.0
 	target_species = ["CH4","O2"]
-	retained_species = ["CH4","O2","N2","H2O","CO2"]
+	retained_species = ["H2O","CO2"]
 	final_error = [0]
 	epsilon_star = .5
 

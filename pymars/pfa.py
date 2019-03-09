@@ -162,6 +162,9 @@ def run_pfa(solution_object, conditions_file, error_limit, target_species, retai
 	elif not conditions_file:
 		print("Conditions file not found")
 		exit()
+    
+	# Add targets, fuels, and oxidizers to the list of retianed species
+	helper.addRetained(conditions_array, target_species, retained_species)
 
 	# Turn conditions array into unran simulation objects for the original solution
 	sim_array = helper.setup_simulations(conditions_array,solution_object)

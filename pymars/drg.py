@@ -180,6 +180,9 @@ def run_drg(solution_object, conditions_file, error_limit, target_species,
     error = [10.0]
 
     conditions_array = readin_conditions(conditions_file)
+   
+    # Add targets, fuels, and oxidizers to the retained species list 
+    helper.addRetained(conditions_array, target_species, retained_species)
 
     # Turn conditions array into unrun simulation objects for the original solution
     sim_array = helper.setup_simulations(conditions_array, solution_object)
