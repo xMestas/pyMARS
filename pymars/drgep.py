@@ -4,6 +4,7 @@ import h5py
 import os, sys, argparse
 import cantera as ct
 import soln2ck
+from drg import target_error_check
 import soln2cti
 from readin_initial_conditions import readin_conditions
 from simulation import Simulation
@@ -170,7 +171,8 @@ def run_drgep(solution_object, conditions_file, error_limit, target_species, ret
 	# Set up variables
 	if len(target_species) == 0: # If the target species are not specified, puke and die.
 		print("Please specify a target species.")
-		exit()
+		exit()	
+	target_error_check(solution_object.species(),target_species)#check if target species is in model
 	done = [] # Singleton to hold wether or not any more species can be cut from the simulation.
 	done.append(False)
 	threshold = .1 # Starting threshold value
