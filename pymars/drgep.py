@@ -4,7 +4,7 @@ import h5py
 import os, sys, argparse
 import cantera as ct
 import soln2ck
-from drg import target_error_check
+from helper import target_error_check
 import soln2cti
 from readin_initial_conditions import readin_conditions
 from simulation import Simulation
@@ -83,7 +83,11 @@ def make_dic_drgep(solution_object, total_edge_data, target_species):
                     print(edge)
                     continue
 
-            # Search the graph for overall interaction coefficents and add them to max_dic if they belong
+            
+
+# Search the graph for overall interaction coefficents and add them to max_dic if they belong
+
+            target_error_check(graph,target_species)
             dic = graph_search_drgep(graph, target_species) # Search graph for max values to each species based on targets
             for sp in dic: # Add to max dictionary if it is new or greater than the value already there.
                 if sp not in max_dic:
@@ -172,7 +176,6 @@ def run_drgep(solution_object, conditions_file, error_limit, target_species, ret
 	if len(target_species) == 0: # If the target species are not specified, puke and die.
 		print("Please specify a target species.")
 		exit()	
-	target_error_check(solution_object.species(),target_species)#check if target species is in model
 	done = [] # Singleton to hold wether or not any more species can be cut from the simulation.
 	done.append(False)
 	threshold = .1 # Starting threshold value

@@ -8,10 +8,10 @@ import networkx
 import numpy as np
 import h5py
 import cantera as ct
-
 import soln2ck
 import soln2cti
 import helper
+from  helper import target_error_check
 from simulation import Simulation
 from create_trimmed_model import trim
 from readin_initial_conditions import readin_conditions
@@ -100,6 +100,7 @@ def trim_drg(total_edge_data, solution_object, threshold_value, keeper_list, don
 
             # Search graph for max values to each species based on targets
            
+            target_error_check(graph,target_species)#check if target species is in model
             dic = graph_search(graph, target_species)
             # Add to max dictionary if it is new or greater than the value already there.
             for sp in dic:
@@ -171,7 +172,6 @@ def run_drg(solution_object, conditions_file, error_limit, target_species,
     """
     
     assert target_species, 'Need to specify at least one target species.'
-    target_error_check(solution_object.species(),target_species)
     # Singleton to hold whether any more species can be cut from the simulation.
     done = []
     done.append(False)
@@ -417,32 +417,6 @@ def get_rates_drg(sim_array, solution_object):
         total_edge_data[ic] = ic_edge_data
     return total_edge_data
 
-def target_error_check(solution, target_species):
-    """
-    check if target species are present in graph before attempting to remove them, 
-    if a target is absent from the graph the program will exit with error message
-
-    Parameters
-    ----------
-    nx_graph : obj
-        networkx graph object of solution
-    target_species : list
-        List of target species to search from
-
-    Returns
-    -------
-    void
-
-    """
-    targetInGraph=False;
-    for target in target_species:
-        targetInGraph=False;
-        for species in solution:
-            if species.name==target:
-                targetInGraph=True
-        if(not targetInGraph):
-            sys.exit('exiting with error target species ' + target + ' not found model')
-    return
 def graph_search(nx_graph, target_species):
     """
     Search nodal graph and generate list of species to remove
