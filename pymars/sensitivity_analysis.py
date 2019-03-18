@@ -11,7 +11,7 @@ import helper
 def create_limbo(reduced_model, ep_star, drgep_coeffs, safe):
 
 	"""
-	Creates a list of speices in limbo for use during a sensitivity analysis.
+	Creates a list of species in limbo for use during a sensitivity analysis.
 
 	Parameters
 	----------
@@ -38,7 +38,6 @@ def create_limbo(reduced_model, ep_star, drgep_coeffs, safe):
 		if sp in drgep_coeffs and drgep_coeffs[sp] < ep_star and (not sp in limbo) and (not sp in safe):
 			limbo.append(sp)
 	return limbo
-
 
 def get_limbo_dic(original_model, reduced_model, limbo, final_error, id_detailed, conditions_array):
 
@@ -158,6 +157,9 @@ def run_sa(original_model, reduced_model, ep_star, final_error, conditions_file,
 	elif not conditions_file:
 		print("Conditions file not found")
 		exit()
+
+	# Add targets, oxidizers, and fuels to retained species
+	helper.addRetained(conditions_array, target, keepers)
 
 	# Turn conditions array into unran simulation objects for the original solution
 	sim_array = helper.setup_simulations(conditions_array, original_model)

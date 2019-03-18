@@ -22,7 +22,8 @@ def relative_location( file):
 
 def testGoodInput():
 	# Original model
-	path_to_original = relative_location("example_files/artificial-mechanism.cti")
+
+	path_to_original = relative_location("pymars/tests/artificial-mechanism.cti")
 	solution_object = ct.Solution(path_to_original)
 	var = pfa.get_rAB_1(solution_object,PA,CA,PAB,CAB);
 	print(var[0]["H_H2"]);
@@ -34,7 +35,8 @@ def testGoodInput():
 	
 def testNegativePA():
 	PA["H"] = -1.5
-	path_to_original = relative_location("example_files/artificial-mechanism.cti")
+
+	path_to_original = relative_location("pymars/tests/artificial-mechanism.cti")
 	solution_object = ct.Solution(path_to_original)
 	var = pfa.get_rAB_1(solution_object,PA,CA,PAB,CAB);
 	print(var[0]);
@@ -49,7 +51,8 @@ def testNegativePA():
 def testBothNegative():
 	PA["H"] = -2
 	CA["H"] = -1.5
-	path_to_original = relative_location("example_files/artificial-mechanism.cti")
+
+	path_to_original = relative_location("pymars/tests/artificial-mechanism.cti")
 	solution_object = ct.Solution(path_to_original)
 	var = pfa.get_rAB_1(solution_object,PA,CA,PAB,CAB);
 	print(var[0]);
@@ -60,7 +63,9 @@ def testBothNegative():
 def testDivideByZero():
 	PA["H"] = 0
 	CA["H"] = 0
-	path_to_original = relative_location("example_files/artificial-mechanism.cti")
+
+	path_to_original = relative_location("pymars/tests/artificial-mechanism.cti")
+
 	solution_object = ct.Solution(path_to_original)
 	var = pfa.get_rAB_1(solution_object,PA,CA,PAB,CAB);
 	print(var[0]);
@@ -73,7 +78,8 @@ def testPAisChar():
 	#PA "H" value will be a char
 	PA["H"] = 'f'
 	CA["H"] = 2
-	path_to_original = relative_location("example_files/artificial-mechanism.cti")
+
+	path_to_original = relative_location("pymars/tests/artificial-mechanism.cti")
 	solution_object = ct.Solution(path_to_original)
 	var = pfa.get_rAB_1(solution_object,PA,CA,PAB,CAB);
 	print(var[0]);
@@ -82,7 +88,8 @@ def testPAisChar():
 def testPAMissing():
 	#PA will not have the speceis "H" defined.
 	PA = {"H2":2, "H2O":3, "O2":1};
-	path_to_original = relative_location("example_files/artificial-mechanism.cti")
+
+	path_to_original = relative_location("pymars/tests/artificial-mechanism.cti")
 	solution_object = ct.Solution(path_to_original)
 	var = pfa.get_rAB_1(solution_object,PA,CA,PAB,CAB);
 	print(var[0]);
@@ -93,7 +100,8 @@ def testEmptyDictionary():
 	CA = {};
 	PAB = {};
 	CAB = {};	
-	path_to_original = relative_location("example_files/artificial-mechanism.cti")
+  
+	path_to_original = relative_location("pymars/tests/artificial-mechanism.cti")
 	solution_object = ct.Solution(path_to_original)
 	var = pfa.get_rAB_1(solution_object,PA,CA,PAB,CAB);
 	print(var[0]);
