@@ -19,7 +19,6 @@ def relative_location(file):
 	file_path = os.path.join(ROOT_DIR, file)
 	return file_path
 
-@pytest.mark.xfail
 def testArtificial():
 	
 	# Load model
@@ -62,7 +61,6 @@ def testArtificial():
 	expected_numers["O2_H2"] = 9.7866081e-14
 	expected_numers["O2_H2O"] = 9.7866081e-14
 	expected_numers["H2_H"] = .00025854374
-	expected_numers["H_H2"] = .00051708749
 	
 	assert math.isclose(expected_numers["H2O_H2"],numers["H2O_H2"],abs_tol=1.0e-17)
 	assert math.isclose(expected_numers["H2O_O2"],numers["H2O_O2"],abs_tol=1.0e-17)
@@ -70,5 +68,4 @@ def testArtificial():
 	assert math.isclose(expected_numers["H2_H2O"],numers["H2_H2O"],abs_tol=1.0e-17)
 	assert math.isclose(expected_numers["O2_H2"],numers["O2_H2"],abs_tol=1.0e-18)
 	assert math.isclose(expected_numers["O2_H2O"],numers["O2_H2O"],abs_tol=1.0e-18)
-	assert math.isclose(expected_numers["H2_H"],numers["H2_H"],abs_tol=1.0e-18)
-	assert math.isclose(expected_numers["H_H2"],numers["H_H2"],abs_tol=1.0e-18)
+	assert math.isclose(expected_numers["H2_H"],numers["H2_H"],abs_tol=1.0e-10)

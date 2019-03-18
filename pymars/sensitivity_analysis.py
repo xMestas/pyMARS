@@ -158,6 +158,9 @@ def run_sa(original_model, reduced_model, ep_star, final_error, conditions_file,
 		print("Conditions file not found")
 		exit()
 
+	# Add targets, oxidizers, and fuels to retained species
+	helper.addRetained(conditions_array, target, keepers)
+
 	# Turn conditions array into unran simulation objects for the original solution
 	sim_array = helper.setup_simulations(conditions_array, original_model)
 	id_detailed = helper.simulate(sim_array)  # Run simulations and process results
