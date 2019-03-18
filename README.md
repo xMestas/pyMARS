@@ -61,7 +61,7 @@ This will run pyMARS with the GRI Mech 3.0 model with the initial conditions lis
 pyMARS will record data from the autoignition simulation for each initial condition, then pyMARS will reduce the model using the DRGEP method with the given target species until the error reaches 5%. The species listed after the `--retained_species` flag will not be removed from the model under any circumstance.
 
 #### .cti Input File
-Consists of elements and species and chemical reactions data, all from NASA, including "falloff reactions," among other types.
+Consists of elements and species and chemical reactions data, all from NASA, including "falloff reactions," among other types.  The output file will also be in the .cti file format under the name pym_*.cti
 
 ## Options
 
