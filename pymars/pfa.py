@@ -13,6 +13,7 @@ from create_trimmed_model import trim
 from numpy import genfromtxt
 from readin_initial_conditions import readin_conditions
 import helper
+from helper import target_error_check
 
 def trim_pfa(total_edge_data, solution_object, threshold_value, keeper_list, done, target_species, model_file):
 
@@ -83,7 +84,7 @@ def trim_pfa(total_edge_data, solution_object, threshold_value, keeper_list, don
                 except IndexError:
                     print(edge)
                     continue
-
+            target_error_check(graph,target_species)#check if target species is in model
             dic = graph_search(graph, target_species) # Search graph for max values to each species based on targets
             for sp in dic: # Add to max dictionary if it is new or greater than the value already there.
                 if sp not in safe:
@@ -149,6 +150,7 @@ def run_pfa(solution_object, conditions_file, error_limit, target_species, retai
 	if len(target_species) == 0: # If the target species are not specified, puke and die.
 		print("Please specify a target species.")
 		exit()
+
 	done = [] # Singleton to hold wether or not any more species can be cut from the simulation.
 	done.append(False)
 	threshold = .1 # Starting threshold value

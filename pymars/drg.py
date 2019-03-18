@@ -8,10 +8,10 @@ import networkx
 import numpy as np
 import h5py
 import cantera as ct
-
 import soln2ck
 import soln2cti
 import helper
+from  helper import target_error_check
 from simulation import Simulation
 from create_trimmed_model import trim
 from readin_initial_conditions import readin_conditions
@@ -99,6 +99,8 @@ def trim_drg(total_edge_data, solution_object, threshold_value, keeper_list, don
                     continue
 
             # Search graph for max values to each species based on targets
+           
+            target_error_check(graph,target_species)#check if target species is in model
             dic = graph_search(graph, target_species)
             # Add to max dictionary if it is new or greater than the value already there.
             for sp in dic:
@@ -170,7 +172,6 @@ def run_drg(solution_object, conditions_file, error_limit, target_species,
     """
     
     assert target_species, 'Need to specify at least one target species.'
-
     # Singleton to hold whether any more species can be cut from the simulation.
     done = []
     done.append(False)

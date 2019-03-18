@@ -1,3 +1,4 @@
+
 ##############
 # This function takes the conditions array and converts it into an array of simulation species_objects
 #
@@ -9,7 +10,7 @@
 
 from simulation import Simulation
 import numpy as np
-
+import sys
 def setup_simulations(conditions_array, model):
     sim_array = []
     i = 0
@@ -47,6 +48,29 @@ def simulate(sim_array):
         return ignition_delay
 
 
+def target_error_check(graph, target_species):
+    """
+    check if target species are present in solution object before attempting to remove them, 
+    if a target is absent from the graph the program will exit with error message
+
+    Parameters
+    ----------
+    graph : obj
+        networkx graph object of solution
+    target_species : list
+        List of target species to search from
+
+    Returns
+    -------
+    void
+
+    """
+    for target in target_species:
+        if(target not in graph):
+            sys.exit('exiting with error target species ' + target + ' not found model')
+    return
+
+
 ############
 # Add oxidizers, fuels, and targets to retianed species.
 #
@@ -78,4 +102,5 @@ def addRetained(conditions_array, target_species, retained_species):
             if sp not in retained_species:
                 retained_species.append(sp)
     return retained_species
+
 
