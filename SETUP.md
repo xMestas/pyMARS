@@ -1,37 +1,36 @@
 ## Setup
 
-**[1]** - **Miniconda**
-
+#### Miniconda Package Manager
 [Cantera Install Link](https://cantera.org/install/index.html) - we recommend using the Miniconda package manager which is linked below, specifically Miniconda3 for your respective operating system. Note that it requires 400MB disk space. Entire installation is very large (~3.5Gb), though subject to change as software is updated.
 
 [Conda](https://conda.io/projects/conda/en/latest/user-guide/install/index.html) 
 
-**[2]** - **Move Script to Appropriate Location**
+Ensure Conda is in Your .bashrc -- it should already be there.
+
+`vim .bashrc in home folder`, include `export PATH=”/nfs/stak/users/{ONID}/miniconda3/bin:$PATH”` (or something similar) if necessary
+
+#### Script
+**[1]** - **Moving Script to Appropriate Location**
 
 PC :: Simply drag script into mobaXterm/other GUI.
 
 Mac users :: `sftp your@server.address`, `put <filename>`, `bye`
 
-**[3]** - **Run .sh File**
+**[2]** - **Running Script**
 
 `bash <filename>.sh`
 
 This will install python 3.7.1 and roughly 40 other things (takes a minute or so)
 
-**[4]** - **Ensure Conda is in Your .bashrc**
-
-It should already be there.
-
-`vim .bashrc in home folder`, include `export PATH=”/nfs/stak/users/{ONID}/miniconda3/bin:$PATH”` (or something similar) if necessary
-
-**[5]** - **Restart Session**
+**[3]** - **Post-Script Restart of Session**
 
 exit and re-ssh to server to apply .bashrc changes
 
-**[6]** - **Install Cantera**
+#### Cantera
 `conda create --name spam --channel cantera cantera ipython matplotlib`
 
-**[8]** - **Spam Environment**
+#### Environment
+`source activate spam`
 
 _any time you want to run pymars, you must run this command_
 
@@ -39,7 +38,7 @@ when you are in this mode, prompt will include `(spam)`
 
 then deactivate active environment at end with `source deactivate`
 
-**[9]** - **Quick, Easy Installs**
+#### Library Installs w/ Conda
 
 `conda install networkx`
 
@@ -49,7 +48,7 @@ then deactivate active environment at end with `source deactivate`
 
 `conda install pytest`
 
-**[10]** - **Clone and Install**
+#### Clone and Install
 
 clone GitHub repo to your preferred location (note the 3.5Gb size)
 
