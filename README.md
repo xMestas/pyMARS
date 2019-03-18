@@ -69,18 +69,26 @@ _Running pyMARS without any options will show a list of all possible options._
  
 **Currently Supported:**
 
-  * `--file` :: The file given for this option should be the mechanism for pyMARS to act on.
-  * `--conditions` :: A file that contains all initial conditions for autoignition. See the example given for formatting.
-  * `--convert`: Calling this option will convert the given Cantera file to the CHEMKIN format.
-  * `--thremo` :: This option holds the thermo data file if your CHEMKIN model has one.
-  * `--transport` :: This option holds the transport data file if your CHEMKIN model has one.
-  * `--species` :: Any species included in this comma seperated list will not be removed from the model no matter what.
-  * `--error` :: This value is the maximum error level that will be allowed for the reduced model. Error percentage is calulated by comparing autoignition delays from the original and reduced models.
-  * `--target` :: Comma-seperated list of target species for model reduction.
-  * `--run_drg` :: This option will run the DRG method for model reduction on the given model. It requires a given error and target species through the `--error` and `--target` options.
-  * `--run_drgep` :: This option will run the DRGEP method for model reduction on the given model. It requires a given error and target species through the `--error` and `--target` options.
-  * `--run_sa` :: Run a sensitivity analysis after completing another reduction method.
-  * `--ep_star` :: A float to be used as the ep star value for the sensitivity analysis.
+_Required_
+  * `--file` :: File of mechanism for pyMARS to act on. 
+  * `--model` or `-m` :: File for input model. (e.g. `mech.cti`)
+  * `--conditions` :: File containing initial conditions for autoignition. See example run above for formatting.
+  * `--error` or `-e` :: Maximum error level value allowed for the reduced model. Error percentage is calculated by comparing autoignition delays between the original and reduced models.
+  * `--targets` :: Comma-separated list of target species for model reduction. See example run for formatting.
+  * `--method` :: The skeletal reduction method (one of the three algorithms--note that you will use the sensitivity analysis with the `--run_sa` flag. 
+  
+_Optional_
+  * `--convert`: Converts the given Cantera file (`.cti`) to the CHEMKIN format (`.inp`).
+  * `--thermo` :: Holds the thermo data file if your CHEMKIN model has one.
+  * `--transport` :: Holds the transport data file if your CHEMKIN model has one.
+  * `--retained_species` :: Any species included in this comma seperated list will not be removed from the model no matter what.
+  * `--run_sa` :: Run a sensitivity analysis _after_ completing another reduction method. Requires `--ep_star` also be set.
+  * `--run_drg` :: Runs DRG method for model reduction. Requires `--error` and `--target` options.
+  * `--run_drgep` :: Runs DRGEP method for model reduction. Requires `--error` and `--target` options.
+  * `--ep_star` :: Float for epsilon star value for the sensitivity analysis.
+
+
+_Flags are contained in_ `__main__.py`
 
 ## Citation
 
@@ -88,8 +96,8 @@ Please refer to the CITATION file for information about citing pyMARS when used 
 
 If you use this package as part of a scholarly publication, it may be appropriate to cite the following papers in addition to this resource:
 
- * KE Niemeyer, CJ Sung, and MP Raju. Skeletal mechanism generation for surrogate fuels using directed relation graph with error propagation and sensitivity analysis. *Combust. Flame*, 157(9):1760--1770, 2010. doi:[10.1016/j.combustflflame.2009.12.022]  (https://doi.org/10.1016/j.combustflflame.2009.12.022) <TODO - page not found. need to replace link>
- * KE Niemeyer and CJ Sung. On the importance of graph search algorithms for DRGEP-based mechanism reduction methods. *Combust. Flame*, 158(8):1439--1443, 2011. doi:[10.1016/j.combustflflame.2010.12.010]  https://doi.org/10.1016/j.combustflflame.2010.12.010). <TODO - page not found. need to replace link>
+ * KE Niemeyer, CJ Sung, and MP Raju. Skeletal mechanism generation for surrogate fuels using directed relation graph with error propagation and sensitivity analysis. *Combust. Flame*, 157(9):1760--1770, 2010. doi:[10.1016/j.combustflflame.2009.12.022]  (https://doi.org/10.1016/j.combustflflame.2009.12.022)
+ * KE Niemeyer and CJ Sung. On the importance of graph search algorithms for DRGEP-based mechanism reduction methods. *Combust. Flame*, 158(8):1439--1443, 2011. doi:[10.1016/j.combustflflame.2010.12.010]  https://doi.org/10.1016/j.combustflflame.2010.12.010).
  * KE Niemeyer and CJ Sung. Mechanism reduction for multicomponent surrogates: A case study using toluene reference fuels. *Combust. Flame*, in press, 2014. doi:[10.1016/j.combustflame.2014.05.001](https://doi.org/10.1016/j.combustflame.2014.05.001)
 
 ## License
