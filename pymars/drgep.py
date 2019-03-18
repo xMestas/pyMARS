@@ -210,7 +210,7 @@ def run_drgep(solution_object, conditions_file, error_limit, target_species, ret
 	final_error[0] = 0 # An integer representing the error introduced in the past simulation.
 	done[0] = False
 
-	while not done[0] and error[0] < error_limit: # Run the simulation until nothing else can be cut.
+	while not done[0] and error[0] < error_limit and threshold < 1: # Run the simulation until nothing else can be cut.
 		# Trim at this threshold value and calculate error.
 		sol_new = drgep_loop_control(
 			solution_object, target_species, retained_species, model_file, error, threshold, done, max_dic, ignition_delay_detailed, conditions_array)

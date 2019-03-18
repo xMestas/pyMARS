@@ -214,7 +214,7 @@ def run_drg(solution_object, conditions_file, error_limit, target_species,
     done[0] = False
 
     # Run the simulation until nothing else can be cut.
-    while not done[0] and error[0] < error_limit:
+    while not done[0] and error[0] < error_limit and threshold < 1:
         # Trim at this threshold value and calculate error.
         sol_new = drg_loop_control(
             solution_object, target_species, retained_species, model_file,
