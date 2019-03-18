@@ -7,11 +7,9 @@
 ## Overview
 _**Py**thon-based (chemical kinetic) **M**odel **A**utomatic **R**eduction **S**oftware (pyMARS) implements multiple techniques for reducing the size and complexity of detailed chemical kinetic models._
 
-pyMars takes a system of compounds (species) in a combustion reaction, forms a weighted graph (created manually), and simplifies the reaction by removing species and checking against a user-specified error range.
+pyMars takes a system of species in a combustion reaction, forms a weighted graph (created manually), and simplifies the reaction by removing species and checking against a user-specified error range. Error percentages are calculated via difference in autoignition delay between the original and reduced models.
 
-- Auto Ignition Delay = time of explosion
-- occurs on x axis with a spike in temperature
-- The solutions object has an array of species, which each have an array of reactions.
+The solutions object has an array of species, which each have an array of reactions.
 
 #### Sensitivity Analysis
 Does not run when there are no species in limbo--"limbo" is defined as any species in the reduced model with a direct interaction coefficient less than the specified epsilon star value.
@@ -30,9 +28,8 @@ These methods are documented in the literature. Sensitivity analysis must be per
 
 See the following publications for more detail:
 
- * KE Niemeyer, CJ Sung, and MP Raju. Skeletal mechanism generation for surrogate fuels using directed relation graph with error propagation and sensitivity analysis. *Combust. Flame*, 157(9):1760--1770, 2010. doi:[10.1016/j.combustflflame.2009.12.022]
-  (https://doi.org/10.1016/j.combustflflame.2009.12.022) <TODO - page not found. need to replace link>
- * KE Niemeyer and CJ Sung. On the importance of graph search algorithms for DRGEP-based mechanism reduction methods. *Combust. Flame*, 158(8):1439--1443, 2011. doi:[10.1016/j.combustflflame.2010.12.010]  (https://doi.org/10.1016/j.combustflflame.2010.12.010). <TODO - page not found. need to replace link>
+ * KE Niemeyer, CJ Sung, and MP Raju. Skeletal mechanism generation for surrogate fuels using directed relation graph with error propagation and sensitivity analysis. *Combust. Flame*, 157(9):1760--1770, 2010. doi:[10.1016/j.combustflflame.2009.12.022](https://doi.org/10.1016/j.combustflflame.2009.12.022)
+ * KE Niemeyer and CJ Sung. On the importance of graph search algorithms for DRGEP-based mechanism reduction methods. *Combust. Flame*, 158(8):1439--1443, 2011. doi:[10.1016/j.combustflflame.2010.12.010](https://doi.org/10.1016/j.combustflflame.2010.12.010).
  * KE Niemeyer and CJ Sung. Mechanism reduction for multicomponent surrogates: A case study using toluene reference fuels. *Combust. Flame*, in press, 2014. doi:[10.1016/j.combustflame.2014.05.001](https://doi.org/10.1016/j.combustflame.2014.05.001)
  * TF Lu and CK Law. *Combustion and Flame*, 154:153--163, 2008. doi:[10.1016/j.combustflame.2007.11.013](https://doi.org/10.1016/j.combustflame.2007.11.013)
 
@@ -46,7 +43,7 @@ While running pyMARS, make sure that you are using an up to date version of Pyth
 
 pyMARS requires models in the Cantera format. However, running pyMARS with a CHEMKIN file will convert it into a Cantera file, and provides the `--convert option` to convert the reduced model back into the CHEMKIN format.
 
-Don't forget `source activate spam` each time you run pyMars.
+Don't forget `source activate spam` for the environment each time you run pyMars. + `deactivate spam` afterward.
 
 
 #### Setup
